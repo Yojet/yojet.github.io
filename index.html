@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Yojet Sharma</title>
+<meta name="description" content="Yojet Sharma, Ph.D. Physics-trained cell biologist using imaging and physiology to ask basic questions about how cells work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@400;500;600&display=swap">
+<style>
+/* Layout concept: each tab has its own illustration, drawn on one canvas behind the whole page. */
+:root {
+  --paper: #f8f8f5;
+  --surface: #edf1ec;
+  --ink: #2b3532;
+  --muted: #5a6762;
+  --line: #d8dfd8;
+  --accent: #47705f;
+  --chip: #dcebe2;
+  --chip-ink: #2f5345;
+  --band: #e8f0ea;
+  --band-deep: #f8f8f5;
+  --band-ink: #2b3532;
+  --band-muted: #5a6762;
+  --marigold: #47705f;
+  --neuron: #8db3a0;
+  --tip: #e0a78b;
+  --display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --body: "EB Garamond", Georgia, "Times New Roman", serif;
+  --mono: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.1875rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+body { position: relative; }
+main, footer { position: relative; z-index: 1; }
+main p, main li, main h1, main h2, main span, footer p, footer h2, footer span, footer a {
+  text-shadow: 0 0 5px var(--paper), 0 0 12px var(--paper), 0 0 2px var(--paper);
+}
+#art { position: absolute; top: 0; left: 0; width: 100%; z-index: 0; pointer-events: none; display: block; }
+.fig { display: grid; gap: 10px; margin-top: 8px; overflow-x: auto; }
+.fig svg { display: block; width: 100%; min-width: 520px; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; }
+.fig figcaption { font-size: 1rem; line-height: 1.4; color: var(--muted); }
+.addr { overflow-wrap: anywhere; }
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--band-deep);
+}
+h1, h2, h3, p, ul, ol, figure { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+h1, h2, h3 { font-family: var(--display); font-weight: 500; letter-spacing: -0.005em; text-wrap: balance; }
+h2 { font-size: clamp(2rem, 4.6vw, 3.1rem); line-height: 1.08; }
+h3 { font-size: 1.35rem; line-height: 1.2; }
+a { color: inherit; text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+a:hover { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--marigold); outline-offset: 3px; border-radius: 2px; }
+
+.wrap {
+  max-width: 1120px; margin-inline: auto;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+}
+.label {
+  font-family: var(--mono); font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);
+}
+.section { padding-block: clamp(64px, 9vw, 112px); border-top: 1px solid var(--line); }
+.section-head { display: grid; gap: 14px; max-width: 42rem; margin-bottom: clamp(36px, 5vw, 56px); }
+.section-head p { color: var(--muted); }
+
+/* Header */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--band-deep); color: var(--band-ink);
+}
+.top .wrap { display: flex; align-items: center; justify-content: flex-end; gap: 24px; min-height: 60px; }
+.brand { font-family: var(--display); font-weight: 600; font-size: 1.1rem; text-decoration: none; white-space: nowrap; }
+.brand:hover, .top nav a:hover { color: var(--marigold); }
+.top nav { min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.top nav::-webkit-scrollbar { display: none; }
+.top nav ul { display: flex; gap: 24px; }
+.top nav a { font-family: var(--display); font-size: 0.98rem; text-decoration: none; white-space: nowrap; color: var(--band-muted); }
+
+/* Hero */
+.hero { color: var(--band-ink); }
+.hero-text { display: grid; gap: 24px; padding-block: clamp(56px, 8vw, 104px); }
+.hello { font-family: var(--display); font-size: clamp(1.25rem, 2.2vw, 1.55rem); color: var(--marigold); font-weight: 500; }
+h1 { font-size: clamp(2.5rem, 5.6vw, 4.2rem); line-height: 1.08; letter-spacing: -0.01em; font-weight: 500; }
+.lead { font-size: clamp(1.2rem, 2vw, 1.4rem); line-height: 1.45; text-align: justify; hyphens: auto; color: var(--band-ink); }
+.affil { font-family: var(--mono); font-size: 0.8rem; color: var(--band-muted); line-height: 1.6; }
+.affil a:hover { color: var(--marigold); }
+.btn {
+  display: inline-block; font-family: var(--display); font-weight: 600; font-size: 1.02rem;
+  padding: 11px 20px; border-radius: 999px; text-decoration: none;
+  border: 1.5px solid var(--marigold); cursor: pointer; line-height: 1.3;
+}
+.btn.solid { background: var(--marigold); color: #ffffff; }
+.btn.solid:hover { background: var(--band-ink); border-color: var(--band-ink); color: #ffffff; }
+.cycle { width: 100%; max-width: 460px; height: auto; display: block; }
+.btn.ghost { background: transparent; color: var(--band-ink); }
+.btn.ghost:hover { color: var(--marigold); }
+
+/* Research */
+.ways > li {
+  display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) auto;
+  gap: 16px 40px; padding-block: 32px; border-top: 1px solid var(--line); align-items: start;
+}
+.ways > li:last-child { border-bottom: 1px solid var(--line); }
+.way-name { font-family: var(--display); font-weight: 600; font-size: clamp(1.7rem, 3vw, 2.2rem); line-height: 1.05; letter-spacing: -0.02em; }
+.way-body { display: grid; gap: 10px; min-width: 0; max-width: 38rem; }
+.way-body .sys { font-family: var(--display); font-weight: 600; font-size: 1.1rem; }
+.chip {
+  font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.03em;
+  padding: 4px 10px; border-radius: 999px; background: var(--chip); color: var(--chip-ink); white-space: nowrap;
+  justify-self: start;
+}
+.chip.quiet { background: var(--surface); color: var(--muted); }
+
+[data-tab="research"] .wrap { background: rgba(248,248,245,.93); border-radius: 6px; padding-block: 24px; }
+[data-tab="research"] .section-head { max-width: none; margin-bottom: 20px; }
+[data-tab="research"] .ways > li { grid-template-columns: minmax(0, 1fr); padding-block: 22px; }
+[data-tab="research"] .ways > li:has(.mini) { grid-template-columns: minmax(0, 1fr) 210px; align-items: center; }
+[data-tab="research"] .way-body { max-width: none; }
+[data-tab="research"] p:not(.sys):not(.fig p) { text-align: justify; hyphens: auto; }
+.mini { width: 150px; justify-self: end; display: block; }
+.mini.wide { width: 210px; }
+.fig { max-width: 760px; margin: 24px auto 0; width: 100%; }
+@media (max-width: 600px) { [data-tab="research"] .ways > li:has(.mini) { grid-template-columns: minmax(0, 1fr); } .mini { justify-self: start; } }
+
+/* Lab */
+.lab { border-top: 0; }
+.lab-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); }
+.lab-intro { display: grid; gap: 18px; align-content: start; }
+.lab-q > li { display: grid; gap: 6px; padding-block: 20px; border-top: 1px solid var(--line); }
+.lab-q > li:first-child { border-top: 0; padding-top: 0; }
+.lab-q p { color: var(--muted); }
+
+/* Toolkit */
+.tools { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
+.tools > div { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.tools ul { font-size: 1.03rem; line-height: 1.4; display: grid; gap: 6px; color: var(--muted); }
+
+/* Path */
+.path { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; position: relative; }
+.path::before { content: ""; position: absolute; left: 0; right: 0; top: 6px; height: 2px; background: var(--line); }
+.path > li { position: relative; display: grid; gap: 6px; padding-top: 30px; align-content: start; min-width: 0; }
+.path > li::before {
+  content: ""; position: absolute; top: 0; left: 0; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--paper); border: 2px solid var(--accent);
+}
+.path > li:last-child::before { background: var(--marigold); border-color: var(--marigold); }
+.when { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.path .place { font-family: var(--display); font-weight: 600; font-size: 1.6rem; line-height: 1.1; }
+.path p { font-size: 1.03rem; line-height: 1.42; color: var(--muted); }
+
+/* Publications */
+.pubs > li {
+  display: grid; grid-template-columns: 4rem minmax(0, 1fr); gap: 8px 24px;
+  padding-block: 24px; border-top: 1px solid var(--line);
+}
+.pubs > li:last-child { border-bottom: 1px solid var(--line); }
+.pubs .yr { font-family: var(--mono); font-size: 0.85rem; color: var(--muted); padding-top: 4px; font-variant-numeric: tabular-nums; }
+.pub-body { display: grid; gap: 6px; min-width: 0; max-width: 48rem; }
+.pub-title { font-family: var(--display); font-weight: 600; font-size: 1.2rem; line-height: 1.25; }
+.pub-title a { text-decoration: none; }
+.pub-title a:hover { text-decoration: underline; }
+.pub-meta { font-size: 1rem; line-height: 1.4; color: var(--muted); overflow-wrap: anywhere; }
+.pub-meta b { color: var(--ink); font-weight: 500; }
+.scholar { margin-top: 24px; }
+
+/* Recognition and mentoring */
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 80px); }
+.two > div { display: grid; gap: 20px; align-content: start; min-width: 0; }
+.entries > li { display: grid; grid-template-columns: 3.4rem minmax(0, 1fr); gap: 16px; padding-block: 12px; border-top: 1px solid var(--line); }
+.entries span:first-child { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); padding-top: 4px; }
+.entries small { display: block; font-size: 0.98rem; color: var(--muted); line-height: 1.4; }
+.mentees > li { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 14px; align-items: center; padding-block: 10px; border-top: 1px solid var(--line); line-height: 1.35; }
+.mentees img, .mentees .initials { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; }
+.mentees .initials { display: grid; place-items: center; background: var(--surface); border: 1px solid var(--line); color: var(--muted); font-family: var(--mono); font-size: 0.85rem; }
+.mentees small { display: block; font-size: 0.98rem; color: var(--muted); }
+.two p { color: var(--muted); }
+
+.top nav a[aria-current="page"] { color: var(--marigold); }
+
+/* Home */
+.home-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 80px); }
+.home-grid > div { display: grid; gap: 16px; align-content: start; min-width: 0; }
+.home-grid h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); }
+.news > li { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: 16px; padding-block: 12px; border-top: 1px solid var(--line); }
+.news .when { padding-top: 4px; }
+@media (max-width: 860px) { .home-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Values */
+.values { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px clamp(32px, 6vw, 80px); }
+.values > li { display: grid; gap: 8px; align-content: start; }
+.values p { color: var(--muted); }
+@media (max-width: 860px) { .values { grid-template-columns: minmax(0, 1fr); } }
+
+.path img { width: 100%; max-width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 4px; }
+.path .credit { font-size: 0.8rem; line-height: 1.3; }
+
+/* Gallery */
+.shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.shot { display: grid; gap: 8px; min-width: 0; }
+.shot img, .slot { width: 100%; max-width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 4px; }
+.slot { display: grid; place-items: center; text-align: center; padding: 12px; background: var(--surface); border: 1px dashed var(--line); color: var(--muted); font-family: var(--mono); font-size: 0.75rem; }
+.shot figcaption { font-size: 1rem; line-height: 1.35; color: var(--muted); }
+@media (max-width: 860px) { .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .shots { grid-template-columns: minmax(0, 1fr); } }
+
+/* Contact */
+.contact { color: var(--band-ink); padding-block: clamp(64px, 9vw, 112px); }
+.contact .wrap { display: grid; gap: 22px; }
+.contact h2 { max-width: none; }
+.contact p { color: var(--band-muted); text-align: justify; hyphens: auto; }
+.contact .addr { text-align: left; }
+.mail { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+#email { font-family: var(--display); font-weight: 600; font-size: clamp(1.35rem, 4vw, 2rem); color: var(--marigold); overflow-wrap: anywhere; user-select: all; }
+.foot-links { font-family: var(--mono); font-size: 0.82rem; display: flex; flex-wrap: wrap; gap: 8px 24px; color: var(--band-muted); }
+.foot-links a:hover { color: var(--marigold); }
+#copy { font-size: 0.9rem; padding: 7px 14px; }
+
+@media (max-width: 860px) {
+  .ways > li { grid-template-columns: minmax(0, 1fr); }
+  .lab-grid, .two { grid-template-columns: minmax(0, 1fr); }
+  .tools { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .path { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .path::before { top: 6px; bottom: 6px; left: 6px; right: auto; width: 2px; height: auto; }
+  .path > li { padding-top: 0; padding-left: 32px; }
+}
+@media (max-width: 520px) {
+  body { font-size: 1.125rem; }
+  .brand { display: none; }
+  .top nav ul { gap: 18px; }
+  .tools { grid-template-columns: minmax(0, 1fr); }
+  .pubs > li { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<canvas id="art" aria-hidden="true"></canvas>
+
+
+<header class="top">
+  <div class="wrap">
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#welcome">Home</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#path">About</a></li>
+        <li><a href="#mentoring">Development</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="welcome" data-tab="home">
+    <div class="wrap">
+      <div class="hero-text">
+        <p class="hello">Namaskara!</p>
+        <h1>I like to watch how living cells breathe and function.</h1>
+        <p class="lead">I was trained in physics and came to biology through accident and a microscope, where I first learnt to setup calcium imaging. I am interested in basic questions about how cells signal and communicate.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="latest" data-tab="home" style="border-top:0">
+    <div class="wrap">
+      <div style="display:grid;gap:16px">
+        <span class="label">News</span>
+        <ul class="news">
+          <li><span class="when">Jul 2026</span><span>Started as a postdoctoral fellow at UW&#8211;Madison.</span></li>
+          <li><span class="when">Apr 2026</span><span>Completed my Ph.D. at NCBS-TIFR.</span></li>
+          <li><span class="when">Nov 2025</span><span>Took part in public outreach at <a href="#gallery">Manotsava</a>, the National Mental Health Festival in Bengaluru.</span></li>
+          <li><span class="when">Nov 2025</span><span>First-author paper published in EMBO Molecular Medicine.</span></li>
+          <li><span class="when">Nov 2025</span><span>Co-authored paper on mitochondria in OCRL-depleted cells published in Frontiers in Cell and Developmental Biology.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="research" data-tab="research" style="border-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="label">Research</span>
+        <h2>Current research</h2>
+      </div>
+      <ol class="ways">
+        <li>
+          <div class="way-body">
+            <p class="sys">Chromosome dynamics in trisomy 21 and across species</p>
+            <p>Trisomy 21 causes Down syndrome. I am optimizing an image analysis pipeline that quantifies chromosome dynamics in human cells, in order to determine how an additional copy of chromosome 21 alters chromosome behavior.</p>
+          </div>
+          <svg class="mini" viewBox="0 0 150 110" role="img" aria-label="Chromosomes"><g fill="none" stroke-linecap="round" stroke-width="13"><path stroke="#a9c4dc" d="M22 16L52 92M52 16L22 92"/><path stroke="#e3b3a2" d="M86 26L108 84M108 26L86 84"/><path stroke="#a9d0bb" d="M128 34L142 76M142 34L128 76"/></g><circle cx="37" cy="54" r="5" fill="#5a6762"/><circle cx="97" cy="55" r="4" fill="#5a6762"/><circle cx="135" cy="55" r="3" fill="#5a6762"/></svg>
+        </li>
+        <li>
+          <div class="way-body">
+            <p class="sys">Comparative neuronal physiology across species</p>
+            <p>I use patch-seq to record from stem cell-derived neurons of humans, chimpanzees and macaques, and compare their electrophysiological properties across species.</p>
+          </div>
+          <svg class="mini wide" viewBox="0 0 250 100" role="img" aria-label="Silhouettes of human, chimpanzee and macaque brains"><g transform="translate(0 6) scale(1)"><path d="M6 42C2 22 22 4 48 4C74 3 96 16 96 38C96 48 90 54 80 54C78 62 70 66 62 62L60 72C56 74 52 72 52 66L50 58C36 62 12 60 6 42Z" fill="#c9b8d8"/></g><text x="50" y="96" text-anchor="middle" style="font:500 10px Montserrat,Arial,sans-serif;fill:#5a6762">Human</text><g transform="translate(108 38) scale(0.56)"><path d="M6 42C2 22 22 4 48 4C74 3 96 16 96 38C96 48 90 54 80 54C78 62 70 66 62 62L60 72C56 74 52 72 52 66L50 58C36 62 12 60 6 42Z" fill="#c9b8d8"/></g><text x="136" y="96" text-anchor="middle" style="font:500 10px Montserrat,Arial,sans-serif;fill:#5a6762">Chimpanzee</text><g transform="translate(205 52) scale(0.36)"><path d="M6 42C2 22 22 4 48 4C74 3 96 16 96 38C96 48 90 54 80 54C78 62 70 66 62 62L60 72C56 74 52 72 52 66L50 58C36 62 12 60 6 42Z" fill="#c9b8d8"/></g><text x="223" y="96" text-anchor="middle" style="font:500 10px Montserrat,Arial,sans-serif;fill:#5a6762">Macaque</text></svg>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="next" data-tab="research" style="border-top:0;padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Proposed research</h2>
+      </div>
+      <ol class="ways">
+        <li><div class="way-body"><p class="sys">Benchmarking iPSC-derived astrocytes</p><p>Deriving astrocytes from iPSCs remains a challenge. I aim to benchmark current differentiation methods.</p></div></li>
+        <li><div class="way-body"><p class="sys">Astrocyte regulation of neuronal physiology across species</p><p>I aim to determine how human, chimpanzee and macaque astrocytes affect neuronal action potentials, spontaneous action potentials, endocytosis and neurotransmitter release.</p></div></li>
+        <li><div class="way-body"><p class="sys">Immunology of the brain parenchyma</p><p>I aim to define how the basic immunology of the brain parenchyma differs across species.</p></div></li>
+        <li><div class="way-body"><p class="sys">Rates of mitosis across species</p><p>I aim to image chromosomes across species and quantify the rate of mitosis.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="phd" data-tab="research" style="border-top:0;padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Doctoral research</h2>
+      </div>
+      <div class="way-body">
+        <p class="sys">Lowe syndrome and <i>OCRL</i></p>
+        <p>Lowe syndrome results from loss of OCRL, a phosphatase that dephosphorylates PI(4,5)P<sub>2</sub>. Patient-derived neural stem cells showed enhanced Notch-dependent gliogenesis, and the resulting neurons showed delayed physiological maturation. Inhibition of the lipid kinase PIP5K1C restored excitability and corrected the Notch defect in patient brain organoids.</p>
+        <p><a href="https://doi.org/10.1038/s44321-025-00327-y">Sharma et al., EMBO Molecular Medicine, 2025</a></p>
+      </div>
+      <figure class="fig">
+        <svg viewBox="0 0 760 590" role="img" aria-label="Phosphoinositide cycle: interconversion of PtdIns, PI3P, PI4P, PI5P, PI(3,4)P2, PI(4,5)P2, PI(3,5)P2 and PI(3,4,5)P3 by kinases and phosphatases, including OCRL">
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#4c9c6e"/></marker>
+            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#d0533c"/></marker>
+            <g id="lipid"><path d="M0 34V46M-5 54l5 8l-5 8l5 8M5 54l5 8l-5 8l5 8" fill="none" stroke="#2b3532" stroke-width="1.6"/><circle cx="0" cy="44" r="7" fill="#f0b27a"/><path d="M0-34L29-17V17L0 34L-29 17V-17Z" fill="#d6bb97" stroke="#2b3532" stroke-width="1.4"/></g>
+          </defs>
+          <style>.t{font:600 15px Montserrat,Arial,sans-serif;fill:#2b3532;text-anchor:middle}.e{font:500 12.5px Montserrat,Arial,sans-serif;fill:#2b3532;text-anchor:middle}.hi{font-weight:700;fill:#d0533c}.n{font:500 11px Montserrat,Arial,sans-serif;fill:#2b3532;text-anchor:middle}.g{fill:none;stroke:#4c9c6e;stroke-width:2;marker-end:url(#ah)}.r{fill:none;stroke:#d0533c;stroke-width:2;marker-end:url(#ar)}</style>
+          <g transform="translate(60 300)"><use href="#lipid"/></g><text class="t" x="60" y="238">PtdIns</text><g transform="translate(265 300)"><use href="#lipid"/><circle cx="0" cy="-43" r="8" fill="#f0b27a"/></g><text class="t" x="265" y="238">PI4P</text><g transform="translate(490 300)"><use href="#lipid"/><circle cx="0" cy="-43" r="8" fill="#f0b27a"/><circle cx="37" cy="-22" r="8" fill="#f0b27a"/></g><text class="t" x="490" y="238">PI(4,5)P&#8322;</text><g transform="translate(690 300)"><use href="#lipid"/><circle cx="-37" cy="-22" r="8" fill="#f0b27a"/><circle cx="0" cy="-43" r="8" fill="#f0b27a"/><circle cx="37" cy="-22" r="8" fill="#f0b27a"/></g><text class="t" x="690" y="238">PI(3,4,5)P&#8323;</text><g transform="translate(265 100)"><use href="#lipid"/><circle cx="-37" cy="-22" r="8" fill="#f0b27a"/></g><text class="t" x="265" y="38">PI3P</text><g transform="translate(490 100)"><use href="#lipid"/><circle cx="-37" cy="-22" r="8" fill="#f0b27a"/><circle cx="0" cy="-43" r="8" fill="#f0b27a"/></g><text class="t" x="490" y="38">PI(3,4)P&#8322;</text><g transform="translate(265 500)"><use href="#lipid"/><circle cx="37" cy="-22" r="8" fill="#f0b27a"/></g><text class="t" x="265" y="438">PI5P</text><g transform="translate(490 500)"><use href="#lipid"/><circle cx="-37" cy="-22" r="8" fill="#f0b27a"/><circle cx="37" cy="-22" r="8" fill="#f0b27a"/></g><text class="t" x="490" y="438">PI(3,5)P&#8322;</text><path class="g" d="M120 293H205"/><path class="r" d="M205 307H120"/><text class="e" x="162.5" y="284">PI4K</text><text class="e" x="162.5" y="326">SAC1/2</text><path class="g" d="M325 293H430"/><path class="r" d="M430 307H325"/><text class="e" x="377.5" y="284">PIP5K</text><text class="e hi" x="377.5" y="326">OCRL</text><text class="e" x="377.5" y="342">INPP5s</text><text class="e" x="377.5" y="358">SYNJ1/2</text><path class="g" d="M555 293H630"/><path class="r" d="M630 307H555"/><text class="e" x="592.5" y="284">PI3K I</text><text class="e" x="592.5" y="326">PTEN</text><path class="g" d="M330 93H425"/><path class="r" d="M425 107H330"/><text class="e" x="377.5" y="126">INPP4A/B</text><path class="g" d="M330 493H425"/><path class="r" d="M425 507H330"/><path class="g" d="M45 225Q55 120 195 95"/><path class="g" d="M45 385Q55 480 195 505"/><path class="r" d="M690 225Q670 120 560 95"/><text class="e" x="690" y="135">SHIP1/2</text><text class="e" x="690" y="151">INPP5E/J/K</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section lab" id="lab" data-tab="research">
+    <div class="wrap">
+      <div class="lab-intro">
+        <span class="label">Philosophy</span>
+        <h2>What science means to me</h2>
+        <p>There is an art to thinking about questions. A scientist can begin with one basic problem in one simple system, and if the question is deep enough, it keeps growing. It reaches new fields, new organisms and human disease, while staying rooted in the same fundamental biology.</p>
+        <p>I don't yet know which questions will define my career. I do know how I want to reach them. I want to start with something basic and foundational, and take the time to understand it. I want to follow a question into whichever system can answer it best, and keep more than one line of inquiry alive at once. Deep questions open doors no one could have planned for.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="path" data-tab="about">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Journey so far</h2>
+      </div>
+      <ol class="path">
+        <li>
+          <span class="when">2014 &#8211; 2016</span>
+          <img src="images/mumbai.jpg" alt="Vada pav on a red plate" loading="lazy">
+          <span class="place">Mumbai</span>
+          <p>B.S. in Physics, Ramnarain Ruia College (2014). M.S. in Biophysics, University of Mumbai (2016).</p>
+          <p class="credit">Vada pav. <a href="https://commons.wikimedia.org/wiki/File:Crunchy_Crispy_Vada_pav.jpg">Sharvarism</a>, CC BY-SA 4.0</p>
+        </li>
+        <li>
+          <span class="when">2016</span>
+          <img src="images/kolkata.jpg" alt="Mishti doi in a clay cup" loading="lazy">
+          <span class="place">Kolkata</span>
+          <p>Research intern with Dr. Bidisha Sinha at IISER Kolkata, imaging caveolae protein dynamics with TIRF microscopy.</p>
+          <p class="credit">Mishti doi. <a href="https://commons.wikimedia.org/wiki/File:Food-Mishti-Doi.jpg">Sumitsurai</a>, CC BY-SA 3.0</p>
+        </li>
+        <li>
+          <span class="when">2017 &#8211; 2026</span>
+          <img src="images/bangalore.jpg" alt="Donne biryani in a leaf bowl" loading="lazy">
+          <span class="place">Bangalore</span>
+          <p>Research fellow, then Ph.D. in cell biology and neuroscience with Prof. Raghu Padinjat at NCBS-TIFR. Thesis: Physiological maturation of iPSC-derived Lowe Syndrome neurons.</p>
+          <p class="credit">Donne biryani. <a href="https://commons.wikimedia.org/wiki/File:Chicken_Donne_Biriyani.jpg">Pecha tenzin</a>, CC0</p>
+        </li>
+        <li>
+          <span class="when">2026 &#8211; now</span>
+          <img src="images/madison.jpg" alt="A Culver's ButterBurger" loading="lazy">
+          <span class="place">Madison</span>
+          <p>Postdoctoral fellow with Dr. Andr&#233; Sousa at the University of Wisconsin&#8211;Madison.</p>
+          <p class="credit">Culver's ButterBurger. <a href="https://commons.wikimedia.org/wiki/File:Culver%27s_Butterburger.jpg">Arnold Gatilao</a>, CC BY 2.0</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="publications" data-tab="publications">
+    <div class="wrap">
+      <ol class="pubs">
+        <li>
+          <span class="yr">2025</span>
+          <div class="pub-body">
+            <p class="pub-title"><a href="https://doi.org/10.1038/s44321-025-00327-y">Enhanced Notch dependent gliogenesis and delayed physiological maturation underlie neurodevelopmental defects in Lowe syndrome</a></p>
+            <p class="pub-meta"><b>Sharma Y</b>, Bhatia P, Rangappa G, Saha S, Raghu P. <i>EMBO Molecular Medicine</i> 17(12).</p>
+            <p class="pub-meta">In the news: <a href="https://timesofindia.indiatimes.com/city/bengaluru/national-centre-for-biological-sciences-study-links-lipid-imbalance-to-brain-disorder-in-lowe-syndrome-patients/articleshow/125281391.cms">The Times of India</a>, <a href="https://indianexpress.com/article/cities/bangalore/lipid-imbalance-brain-rare-disorder-lowe-syndrome-bengaluru-ncbs-10363964/">The Indian Express</a>, <a href="https://newskarnataka.com/bengaluru/bengaluru-scientists-uncover-lipid-link-behind-rare-brain-disorder-lowe-syndrome/13112025">News Karnataka</a></p>
+            <span class="chip">First author</span>
+          </div>
+        </li>
+        <li>
+          <span class="yr">2025</span>
+          <div class="pub-body">
+            <p class="pub-title"><a href="https://doi.org/10.3389/fcell.2025.1679675">Mitochondrial structure and function in OCRL depleted cells</a></p>
+            <p class="pub-meta">Philip RG, Bhatia P, <b>Sharma Y</b>, Raghu P. <i>Frontiers in Cell and Developmental Biology</i> 13:1679675.</p>
+          </div>
+        </li>
+        <li>
+          <span class="yr">2024</span>
+          <div class="pub-body">
+            <p class="pub-title"><a href="https://doi.org/10.1007/s12038-023-00408-5">Challenges and opportunities for discovering the biology of rare genetic diseases of the brain</a></p>
+            <p class="pub-meta">Raghu P, <b>Sharma Y</b>, Bhuvanendran Nair Suseela Devi A, Krishnan H. <i>Journal of Biosciences</i> 49:26.</p>
+          </div>
+        </li>
+        <li>
+          <span class="yr">2022</span>
+          <div class="pub-body">
+            <p class="pub-title"><a href="https://doi.org/10.1242/bio.059066">A human stem cell resource to decipher the biochemical and cellular basis of neurodevelopmental defects in Lowe syndrome</a></p>
+            <p class="pub-meta">Akhtar BM, Bhatia P, Acharya S, Sharma S, <b>Sharma Y</b>, Bhuvanendran Nair Suseela Devi A, Ganapathy K, Vasudevan A, Raghu P. <i>Biology Open</i> 11(1):bio059066.</p>
+          </div>
+        </li>
+        <li>
+          <span class="yr">2020</span>
+          <div class="pub-body">
+            <p class="pub-title"><a href="https://doi.org/10.12688/wellcomeopenres.15626.1">In vitro human stem cell derived cultures to monitor calcium signaling in neuronal development and function</a></p>
+            <p class="pub-meta"><b>Sharma Y</b>, Saha S, Joseph A, Krishnan H, Raghu P. <i>Wellcome Open Research</i> 5:16.</p>
+            <span class="chip">First author</span>
+          </div>
+        </li>
+      </ol>
+      <p class="scholar"><a href="https://scholar.google.com/citations?user=inVjz_0AAAAJ&amp;hl=en">See my Google Scholar profile</a></p>
+    </div>
+  </section>
+
+  <section class="section" id="mentoring" data-tab="mentoring">
+    <div class="wrap two">
+      <div>
+        <span class="label">Mentoring</span>
+        <p>I was fortunate to guide several students through my PhD journey.</p>
+        <ul class="mentees">
+          <li><span class="initials" aria-hidden="true">AK</span><span>Aqreeb Ul Nisa Khan<small>Graduate student, IISc Bangalore</small></span></li>
+          <li><img src="images/people/brindha.jpg" alt="Brindha Rathinasabapathi" loading="lazy"><span>Brindha Rathinasabapathi<small>Graduate student, UCSF</small></span></li>
+          <li><img src="images/people/gagana.jpg" alt="Gagana BR" loading="lazy"><span>Gagana BR<small>Graduate student, NCBS-TIFR</small></span></li>
+          <li><img src="images/people/sukanya.jpg" alt="Sukanya Ganguly" loading="lazy"><span>Sukanya Ganguly<small>NCBS-TIFR</small></span></li>
+          <li><span class="initials" aria-hidden="true">PP</span><span>Preethi K Prasad<small>MSc thesis student, Yuvaraja's College, University of Mysore</small></span></li>
+          <li><span class="initials" aria-hidden="true">R</span><span>Ragavi<small>MSc thesis student, Manipal Institute of Higher Education</small></span></li>
+          <li><img src="images/people/bhavya.jpg" alt="Bhavya Binoy" loading="lazy"><span>Bhavya Binoy<small>Project associate, IISc Bangalore</small></span></li>
+        </ul>
+      </div>
+      <div>
+        <span class="label">Talks and awards</span>
+        <ul class="entries">
+          <li><span>2023</span><span>Winner, <a href="https://x.com/NeuralCell/status/1643003777010528256">#StemCellfie image contest</a><small>STEMCELL Technologies</small></span></li>
+          <li><span>2023</span><span>Short talk and poster, Gordon Research Conference<small>Functional Genomics of Human Brain Development and Disease, Ventura, CA</small></span></li>
+          <li><span>2023</span><span>Carl Storm International Diversity Fellowship<small>Gordon Research Conference</small></span></li>
+          <li><span>2022</span><span>Short talk, EMBO Inositol Lipids Conference<small>Signalling platforms for organizing cellular architecture and physiology, Bangalore</small></span></li>
+          <li><span>2022</span><span>FASEB SRC Travel Award<small>Dynamic Lipid Signaling in Health &amp; Disease</small></span></li>
+          <li><span>2022</span><span>ASCB Cell Bio Travel Grant<small>American Society for Cell Biology</small></span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="gallery" data-tab="gallery">
+    <div class="wrap">
+      <div class="section-head" style="max-width:none">
+        <span class="label">Gallery</span>
+        <h2 style="font-size:clamp(1rem,4.6vw,3.1rem);white-space:nowrap">Science and the people who drive it</h2>
+      </div>
+      <div class="shots" id="shots"></div>
+      <p id="shots-empty">Photos coming soon.</p>
+      <div class="section-head" id="outreach" style="margin-top:clamp(48px,7vw,80px);max-width:none">
+        <span class="label">Outreach</span>
+        <h2>Manotsava, November 2025</h2>
+        <p style="text-align:justify;hyphens:auto">Sharing science with general public at <a href="https://rohininilekaniphilanthropies.org/resources/press-release-nimhans-ncbs-and-rohini-nilekani-philanthropies-announce-the-second-edition-of-the-national-mental-health-festival-manotsava-in-bengaluru/">Manotsava</a>, the National Mental Health Festival in Bengaluru, hosted by NIMHANS, NCBS and Rohini Nilekani Philanthropies.</p>
+      </div>
+      <div class="shots" id="outreach-shots"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="contact" id="contact" data-tab="contact">
+  <div class="wrap">
+    <span class="label" style="color:var(--marigold)">Contact</span>
+    <h2>Let's think through a question together.</h2>
+    <p>I'd like to hear from scientists who enjoy talking through ideas, potential collaborators, and seminar organizers. I'm happy to share my CV by email.</p>
+    <p class="addr"><a href="mailto:ysharma38@wisc.edu">ysharma38@wisc.edu</a><br><a href="mailto:yojet.sharma@gmail.com">yojet.sharma@gmail.com</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var canvas = document.getElementById('art'), ctx = canvas.getContext('2d');
+  var PI = Math.PI, current = 'home';
+
+  function rng(a) {
+    return function () {
+      a = (a + 0x6D2B79F5) | 0;
+      var t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  // A neurite tree: each segment wanders, then forks or continues, until it leaves the page.
+  function neurites(r, W, H, starts, seg, pull, home, forks, lo) {
+    var queue = starts.slice(), count = 0;
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    while (queue.length && count++ < 2600) {
+      var b = queue.shift(), x = b.x, y = b.y, a = b.a;
+      ctx.lineWidth = Math.max(0.8, b.w);
+      ctx.beginPath(); ctx.moveTo(x, y);
+      for (var i = 0, n = Math.round(seg / 8); i < n; i++) {
+        a += (r() - 0.5) * 0.34 + (home - a) * pull;
+        x += Math.cos(a) * 8; y += Math.sin(a) * 8;
+        ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      if (y > H + 30 || y < -30 || x < (lo || -60) || x > W + 60) continue;
+      var d = b.d + 1, s = 0.28 + r() * 0.4;
+      if (d < (forks || 5) || (!forks && r() < 0.12)) {
+        queue.push({ x: x, y: y, a: a - s, w: b.w * 0.8, d: d });
+        queue.push({ x: x, y: y, a: a + s, w: b.w * 0.8, d: d });
+      } else queue.push({ x: x, y: y, a: a, w: b.w * 0.97, d: d });
+    }
+  }
+
+  function neuron(W, H, seed) {
+    var r = rng(seed), sx = W < 700 ? W * 0.6 : W * 0.7, sy = 200, st = [];
+    ctx.strokeStyle = 'rgba(92,150,124,.5)'; ctx.fillStyle = 'rgba(224,167,139,.85)';
+    for (var i = 0; i < 9; i++) st.push({ x: sx, y: sy, a: -0.25 + i * (PI + 0.5) / 8, w: i === 4 ? 6 : 4, d: i === 4 ? 0 : 1 });
+    neurites(r, W, H, st, Math.max(90, H / 15), 0.018, PI / 2);
+    ctx.beginPath(); ctx.arc(sx, sy, 20, 0, 6.3); ctx.fill();
+  }
+
+  // Line drawings on a 100-unit box, from early cells to mammals.
+  var FORMS = [
+    'M50 12a38 38 0 1 0 .1 0zM40 40a4 4 0 1 0 .1 0zM60 56a5 5 0 1 0 .1 0zM36 62a3 3 0 1 0 .1 0zM62 34a3 3 0 1 0 .1 0z',
+    'M26 30C42 8 70 16 78 36C88 58 70 84 46 80C20 76 10 52 26 30zM50 36a13 13 0 1 0 .1 0zM50 45a4 4 0 1 0 .1 0zM78 36C90 26 90 12 98 6',
+    'M6 72C20 40 30 40 40 58S60 78 70 54S86 26 94 30M10 76C24 46 30 46 38 62S60 86 74 58S88 32 96 36',
+    'M50 8C70 8 78 26 72 42C68 52 60 54 60 58M50 8C30 8 22 26 28 42C32 52 40 54 40 58M40 58C34 74 18 70 12 84M44 58C42 78 30 80 28 94M50 58V96M56 58C58 78 70 80 72 94M60 58C66 74 82 70 88 84M42 30a3 3 0 1 0 .1 0zM58 30a3 3 0 1 0 .1 0z',
+    'M50 30C60 30 62 44 60 56C58 72 54 84 50 88C46 84 42 72 40 56C38 44 40 30 50 30zM50 30a8 8 0 1 1 .1 0zM58 42C76 22 96 28 94 42C92 54 72 56 59 50M42 42C24 22 4 28 6 42C8 54 28 56 41 50M42 58L24 72M42 48L20 58M58 58L76 72M58 48L80 58M44 66L32 88M56 66L68 88',
+    'M8 70C10 44 34 34 54 40C62 28 78 30 86 48C92 50 96 56 94 60C88 66 78 66 72 70C56 76 26 76 8 70zM60 38a9 9 0 1 1 .1 0zM80 50a2 2 0 1 0 .1 0zM8 70C-2 76 -2 88 12 90M30 74V84M60 72V84'
+  ];
+  function evolution(W, H) {
+    var r = rng(11), size = Math.min(W * 0.46, 380), n = FORMS.length, gap = (H - 260) / n;
+    var pts = FORMS.map(function (_, i) {
+      var left = i % 2 === 0;
+      return { x: left ? W * 0.28 : W * 0.72, y: 240 + gap * (i + 0.5), left: left };
+    });
+    ctx.strokeStyle = 'rgba(90,126,160,.32)'; ctx.lineWidth = 3; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(W / 2, 90);
+    for (var y = 90; y < H; y += 24) ctx.lineTo(W / 2 + Math.sin(y / 260) * W * 0.05, y);
+    ctx.stroke();
+    pts.forEach(function (p) {
+      ctx.beginPath(); ctx.moveTo(W / 2 + Math.sin(p.y / 260) * W * 0.05, p.y - 90);
+      ctx.quadraticCurveTo(W / 2, p.y - 10, p.x + (p.left ? size * 0.3 : -size * 0.3), p.y); ctx.stroke();
+    });
+    for (var i = 0; i < 50; i++) {
+      ctx.beginPath(); ctx.arc(r() * W, r() * Math.min(H, 700) * (r() * 0.6 + 0.4), 3 + r() * 11, 0, 6.3);
+      ctx.lineWidth = 1.2; ctx.stroke();
+    }
+    pts.forEach(function (p, i) {
+      ctx.save();
+      ctx.translate(p.x - size / 2, p.y - size / 2); ctx.scale(size / 100, size / 100);
+      ctx.strokeStyle = 'rgba(70,112,150,.42)'; ctx.lineWidth = 1; ctx.lineJoin = 'round';
+      ctx.stroke(new Path2D(FORMS[i]));
+      ctx.restore();
+    });
+  }
+
+  function glia(W, H) {
+    var r = rng(5), step = Math.max(260, W / 4);
+    for (var y = 40, row = 0; y < H + step; y += step * 0.8, row++) {
+      for (var x = (row % 2) * step / 2; x < W + step; x += step) {
+        var cx = x + (r() - 0.5) * 70, cy = y + (r() - 0.5) * 70, astro = r() < 0.6, st = [];
+        var c = astro ? '120,160,200' : '205,140,120';
+        ctx.strokeStyle = 'rgba(' + c + ',.5)'; ctx.fillStyle = 'rgba(' + c + ',.7)';
+        for (var i = 0, n = astro ? 7 : 4; i < n; i++) st.push({ x: cx, y: cy, a: i * 6.28 / n + r(), w: astro ? 3.2 : 2, d: astro ? 2 : 3 });
+        var limit = astro ? 40 : 28;
+        tree(r, st, limit, astro ? 5 : 6);
+        ctx.beginPath(); ctx.arc(cx, cy, astro ? 8 : 6, 0, 6.3); ctx.fill();
+      }
+    }
+  }
+  function tree(r, list, seg, maxD) {
+    ctx.lineCap = 'round';
+    list.forEach(function grow(b) {
+      var x = b.x, y = b.y, a = b.a;
+      ctx.lineWidth = Math.max(0.7, b.w); ctx.beginPath(); ctx.moveTo(x, y);
+      for (var i = 0; i < 5; i++) { a += (r() - 0.5) * 0.5; x += Math.cos(a) * seg / 5; y += Math.sin(a) * seg / 5; ctx.lineTo(x, y); }
+      ctx.stroke();
+      if (b.d >= maxD) return;
+      var s = 0.3 + r() * 0.4;
+      grow({ x: x, y: y, a: a - s, w: b.w * 0.7, d: b.d + 1 });
+      grow({ x: x, y: y, a: a + s, w: b.w * 0.7, d: b.d + 1 });
+    });
+  }
+
+  function circuit(W, H) {
+    var r = rng(3), step = Math.max(170, W / 7), nodes = [];
+    for (var y = 30; y < H + step; y += step) for (var x = 20; x < W + step; x += step)
+      nodes.push({ x: x + (r() - 0.5) * step * 0.7, y: y + (r() - 0.5) * step * 0.7, k: Math.floor(r() * 3) });
+    var cols = ['142,120,180', '100,160,150', '220,150,120'];
+    ctx.lineWidth = 1.3;
+    nodes.forEach(function (a) {
+      nodes.map(function (b) { return { b: b, d: Math.hypot(a.x - b.x, a.y - b.y) }; })
+        .filter(function (o) { return o.d > 0; }).sort(function (p, q) { return p.d - q.d; })
+        .slice(0, 3).forEach(function (o) {
+          var b = o.b, mx = (a.x + b.x) / 2 + (r() - 0.5) * 50, my = (a.y + b.y) / 2 + (r() - 0.5) * 50;
+          ctx.strokeStyle = 'rgba(' + cols[a.k] + ',.42)';
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.quadraticCurveTo(mx, my, b.x, b.y); ctx.stroke();
+        });
+    });
+    nodes.forEach(function (a) {
+      ctx.fillStyle = 'rgba(' + cols[a.k] + ',.75)';
+      ctx.beginPath(); ctx.arc(a.x, a.y, 5 + a.k * 3, 0, 6.3); ctx.fill();
+    });
+  }
+
+  // Gallery: a sheet of cells with nuclei, like a stained culture.
+  function cells(W, H) {
+    var r = rng(9), step = 110;
+    for (var y = 0; y < H + step; y += step * 0.86) for (var x = 0; x < W + step; x += step) {
+      var cx = x + (r() - 0.5) * 46, cy = y + (r() - 0.5) * 46, R = 42 + r() * 18;
+      ctx.fillStyle = r() < 0.5 ? 'rgba(186,206,232,.3)' : 'rgba(240,200,200,.3)';
+      ctx.beginPath(); ctx.ellipse(cx, cy, R, R * 0.8, r() * 3, 0, 6.3); ctx.fill();
+      ctx.fillStyle = 'rgba(130,150,200,.32)';
+      ctx.beginPath(); ctx.arc(cx, cy, 13 + r() * 6, 0, 6.3); ctx.fill();
+    }
+  }
+
+  // Contact: two neurons reaching toward each other across a synapse.
+  function synapse(W, H) {
+    var r = rng(21), y = H * 0.55;
+    ctx.strokeStyle = 'rgba(150,120,180,.38)'; ctx.fillStyle = 'rgba(224,167,139,.8)';
+    function side(x, a, lo, hi) {
+      var st = [];
+      for (var i = 0; i < 5; i++) st.push({ x: x, y: y, a: a + (i - 2) * 0.42, w: 3.5, d: 1 });
+      neurites(r, hi, H, st, Math.max(70, W / 12), 0.02, a, 5, lo);
+      ctx.beginPath(); ctx.arc(x, y, 18, 0, 6.3); ctx.fill();
+    }
+    side(W * 0.08, 0, -60, W * 0.44); side(W * 0.92, PI, W * 0.54, W + 60);
+  }
+
+  function paint(tab) {
+    current = tab;
+    canvas.style.opacity = { research: 0.45, gallery: 0.5, contact: 0.4 }[tab] || 0.35;
+    canvas.style.height = '0';
+    var W = document.documentElement.clientWidth;
+    var H = Math.max(document.body.scrollHeight, window.innerHeight);
+    var d = Math.min(window.devicePixelRatio || 1, 1.5, 15000 / H);
+    canvas.style.height = H + 'px';
+    canvas.width = Math.round(W * d); canvas.height = Math.round(H * d);
+    ctx.setTransform(d, 0, 0, d, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    ({ home: function () { neuron(W, H, 7); }, mentoring: function () { neuron(W, H, 7); },
+       research: function () { evolution(W, H); }, publications: function () { glia(W, H); },
+       about: function () { circuit(W, H); }, gallery: function () { cells(W, H); },
+       contact: function () { synapse(W, H); } })[tab]();
+  }
+
+  var timer, lastW = 0;
+  function repaint() { clearTimeout(timer); timer = setTimeout(function () { paint(current); }, 150); }
+  window.addEventListener('resize', function () {
+    if (document.documentElement.clientWidth !== lastW) { lastW = document.documentElement.clientWidth; repaint(); }
+  });
+  window.addEventListener('load', repaint);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(repaint);
+
+  // Tabs: each section names its tab; links to any section open that tab.
+  var views = [].slice.call(document.querySelectorAll('[data-tab]'));
+  function show(id) {
+    var target = document.getElementById(id);
+    var tab = target && target.dataset.tab ? target.dataset.tab : 'home';
+    views.forEach(function (v) { v.hidden = v.dataset.tab !== tab; });
+    document.querySelectorAll('.top nav a').forEach(function (a) {
+      var t = document.getElementById(a.getAttribute('href').slice(1));
+      if (t && t.dataset.tab === tab) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+    paint(tab);
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute('href').slice(1);
+    e.preventDefault();
+    show(id);
+    try { history.replaceState(null, '', '#' + id); } catch (err) {}
+    window.scrollTo(0, 0);
+  });
+  window.addEventListener('hashchange', function () {
+    show(location.hash.slice(1));
+  });
+  show(location.hash.slice(1));
+
+})();
+</script>
+<script src="gallery.js"></script>
+<script>
+(function () {
+  var list = window.GALLERY || [];
+  document.getElementById('shots-empty').hidden = list.length > 0;
+  list.forEach(function (item) {
+    var box = document.getElementById(item.group === 'outreach' ? 'outreach-shots' : 'shots');
+    var f = document.createElement('figure'), i = document.createElement('img'), c = document.createElement('figcaption');
+    f.className = 'shot'; i.src = 'images/' + item.file; i.alt = item.caption; i.loading = 'lazy'; c.textContent = item.caption;
+    f.appendChild(i); if (item.group !== 'outreach') f.appendChild(c); box.appendChild(f);
+  });
+})();
+</script>
+</body>
+</html>
