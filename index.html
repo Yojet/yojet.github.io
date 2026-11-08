@@ -283,6 +283,7 @@ h1 { font-size: clamp(2.5rem, 5.6vw, 4.2rem); line-height: 1.08; letter-spacing:
       <div style="display:grid;gap:16px">
         <span class="label">News</span>
         <ul class="news">
+          <li><span class="when">Nov 2026</span><span>Awarded the MIT &#8211; Anthropic AI for Science Study Compute Grant ($20,000 in AI compute allocations).</span></li>
           <li><span class="when">Jul 2026</span><span>Started as a postdoctoral fellow at UW&#8211;Madison.</span></li>
           <li><span class="when">Apr 2026</span><span>Completed my Ph.D. at NCBS-TIFR.</span></li>
           <li><span class="when">Nov 2025</span><span>Took part in public outreach at <a href="#gallery">Manotsava</a>, the National Mental Health Festival in Bengaluru.</span></li>
@@ -303,14 +304,14 @@ h1 { font-size: clamp(2.5rem, 5.6vw, 4.2rem); line-height: 1.08; letter-spacing:
         <li>
           <div class="way-body">
             <p class="sys">Chromosome dynamics in trisomy 21 and across species</p>
-            <p>Trisomy 21 causes Down syndrome. I am optimizing an image analysis pipeline that quantifies chromosome dynamics in human cells, in order to determine how an additional copy of chromosome 21 alters chromosome behavior.</p>
+            <p> I am optimizing an image analysis pipeline that quantifies chromosome dynamics in human cells, this will help determine how an additional copy of chromosome 21 alters chromosome behavior. One can also use this pipeline to quantify chromosomal dynamics across conditions and address basic questions underlying miotsis. However, in order to generalize it, the pipeline needs to be able to learn as broadly as possible. Too achieve this, I am employing cellpose-sam models which learns from many hand curated/corrected segmented files from napari and also deploying agentic Claude to error track the manual corrections.</p>
           </div>
           <svg class="mini" viewBox="0 0 150 110" role="img" aria-label="Chromosomes"><g fill="none" stroke-linecap="round" stroke-width="13"><path stroke="#a9c4dc" d="M22 16L52 92M52 16L22 92"/><path stroke="#e3b3a2" d="M86 26L108 84M108 26L86 84"/><path stroke="#a9d0bb" d="M128 34L142 76M142 34L128 76"/></g><circle cx="37" cy="54" r="5" fill="#5a6762"/><circle cx="97" cy="55" r="4" fill="#5a6762"/><circle cx="135" cy="55" r="3" fill="#5a6762"/></svg>
         </li>
         <li>
           <div class="way-body">
             <p class="sys">Comparative neuronal physiology across species</p>
-            <p>I use patch-seq to record from stem cell-derived neurons of humans, chimpanzees and macaques, and compare their electrophysiological properties across species.</p>
+            <p>I plan to use patch-seq to record from stem cell-derived neurons of humans, chimpanzees and macaques, and compare their electrophysiological properties across species. At present, I am working on to delinate their calcium activity profiles across different stages of development and looking at how the intrisinc astrocytes behave within cultures.</p>
           </div>
           <svg class="mini wide" viewBox="0 0 250 100" role="img" aria-label="Silhouettes of human, chimpanzee and macaque brains"><g transform="translate(0 6) scale(1)"><path d="M6 42C2 22 22 4 48 4C74 3 96 16 96 38C96 48 90 54 80 54C78 62 70 66 62 62L60 72C56 74 52 72 52 66L50 58C36 62 12 60 6 42Z" fill="#c9b8d8"/></g><text x="50" y="96" text-anchor="middle" style="font:500 10px Montserrat,Arial,sans-serif;fill:#5a6762">Human</text><g transform="translate(108 38) scale(0.56)"><path d="M6 42C2 22 22 4 48 4C74 3 96 16 96 38C96 48 90 54 80 54C78 62 70 66 62 62L60 72C56 74 52 72 52 66L50 58C36 62 12 60 6 42Z" fill="#c9b8d8"/></g><text x="136" y="96" text-anchor="middle" style="font:500 10px Montserrat,Arial,sans-serif;fill:#5a6762">Chimpanzee</text><g transform="translate(205 52) scale(0.36)"><path d="M6 42C2 22 22 4 48 4C74 3 96 16 96 38C96 48 90 54 80 54C78 62 70 66 62 62L60 72C56 74 52 72 52 66L50 58C36 62 12 60 6 42Z" fill="#c9b8d8"/></g><text x="223" y="96" text-anchor="middle" style="font:500 10px Montserrat,Arial,sans-serif;fill:#5a6762">Macaque</text></svg>
         </li>
@@ -324,10 +325,9 @@ h1 { font-size: clamp(2.5rem, 5.6vw, 4.2rem); line-height: 1.08; letter-spacing:
         <h2>Proposed research</h2>
       </div>
       <ol class="ways">
-        <li><div class="way-body"><p class="sys">Benchmarking iPSC-derived astrocytes</p><p>Deriving astrocytes from iPSCs remains a challenge. I aim to benchmark current differentiation methods.</p></div></li>
-        <li><div class="way-body"><p class="sys">Astrocyte regulation of neuronal physiology across species</p><p>I aim to determine how human, chimpanzee and macaque astrocytes affect neuronal action potentials, spontaneous action potentials, endocytosis and neurotransmitter release.</p></div></li>
-        <li><div class="way-body"><p class="sys">Immunology of the brain parenchyma</p><p>I aim to define how the basic immunology of the brain parenchyma differs across species.</p></div></li>
-        <li><div class="way-body"><p class="sys">Rates of mitosis across species</p><p>I aim to image chromosomes across species and quantify the rate of mitosis.</p></div></li>
+        <li><div class="way-body"><p class="sys">Astrocyte regulation of neuronal physiology across species</p><p> I would like to understand how human, chimpanzee and macaque astrocytes affect neuronal action potentials, spontaneous action potentials, endocytosis and neurotransmitter release.</p></div></li>
+        <li><div class="way-body"><p class="sys">Immunology of the brain parenchyma</p><p> Through my PhD project and discussions with PhD my supervisor made me appreciate basic immunology as a whole. I am interested to see how can components of adapative immunity from lower model organisms be applied to humans for clinical applications (other than CAR-T).</p></div></li>
+        <li><div class="way-body"><p class="sys">Cell biolog of mitosis </p><p>Given my training in physics and jumping directly to stem cell biology, I never delved deeper into mitosis. It is through my ongoing work on chromosomal imaging that I am fascinated by the biophysics of mitosis. Particularly, I am interested to learn how stages of mitosis can lead to different cell-fate outputs. Is there a way to predict this just by the way of looking at how the chromsomes drift apart? How exactly does defect in this mode lead to diseases? Are there lower models that repair this defect better than mammals?</p></div></li>
       </ol>
     </div>
   </section>
@@ -467,8 +467,9 @@ h1 { font-size: clamp(2.5rem, 5.6vw, 4.2rem); line-height: 1.08; letter-spacing:
         </ul>
       </div>
       <div>
-        <span class="label">Talks and awards</span>
+        <span class="label">Grants and awards</span>
         <ul class="entries">
+          <li><span>2026</span><span>MIT &#8211; Anthropic AI for Science Study Compute Grant<small>$20,000 in AI Compute Allocations</small></span></li>
           <li><span>2023</span><span>Winner, <a href="https://x.com/NeuralCell/status/1643003777010528256">#StemCellfie image contest</a><small>STEMCELL Technologies</small></span></li>
           <li><span>2023</span><span>Short talk and poster, Gordon Research Conference<small>Functional Genomics of Human Brain Development and Disease, Ventura, CA</small></span></li>
           <li><span>2023</span><span>Carl Storm International Diversity Fellowship<small>Gordon Research Conference</small></span></li>
